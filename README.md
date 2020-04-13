@@ -1,5 +1,7 @@
-# Geek Girls Carrots Wroclaw Day 1
+# Presentation about t-SNE algorithm
 
-### Javascript Workshop
+Article available here:
+[https://erdem.pl/2020/04/t-sne-clearly-explained](https://erdem.pl/2020/04/t-sne-clearly-explained)
 
-Presentation available here [https://burnpiro.github.io/carrots-wroclaw-day1/#/](https://burnpiro.github.io/carrots-wroclaw-day1/#/)
+
+Presentation available here [https://burnpiro.github.io/t-sne-presentation/#/](https://burnpiro.github.io/t-sne-presentation/#/)
