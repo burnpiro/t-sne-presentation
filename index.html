@@ -1,0 +1,274 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="description" content="t-distributed Stochastic Neighbor Embedding">
+  <meta name="author" content="Kemal Erdem">
+
+  <title>t-SNE (t-distributed Stochastic Neighbor Embedding)</title>
+
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/reveal.css">
+  <link rel="stylesheet" href="css/theme/beige.css">
+  <link rel="stylesheet" href="css/custom.css">
+
+  <!-- Theme used for syntax highlighting of code -->
+  <link rel="stylesheet" href="lib/css/github-light.css">
+
+  <!-- Printing and PDF exports -->
+  <script>
+    var link = document.createElement('link');
+    link.rel = 'stylesheet';
+    link.type = 'text/css';
+    link.href = window.location.search.match(/print-pdf/gi) ? 'css/print/pdf.css' : 'css/print/paper.css';
+    document.getElementsByTagName('head')[0].appendChild(link);
+  </script>
+
+  <!--[if lt IE 9]>
+  <script src="lib/js/html5shiv.js"></script>
+  <![endif]-->
+</head>
+<body>
+<div class="reveal">
+  <div class="slides">
+    <section>
+      <h2>t-SNE</h2>
+      <p>
+        t-distributed Stochastic Neighbor Embedding
+      </p>
+      <img src="assets/nonlineary2.png" style="max-width: 80%; padding-right: 5vw" class="plain">
+      <img src="assets/pre5-2.png" style="max-width: 80%;" class="plain"><br/>
+      <small>by Kemal Erdem | <a href="https://erdem.pl">@burnpiro</a></small>
+      <aside class="notes"></aside>
+    </section>
+    <section>
+      <h2>What is t-SNE?</h2>
+      <p>
+        <img src="assets/swiss_roll.png" style="min-width: 50vw" class="plain">
+        <strong>t-SNE vs PCA</strong>
+      </p>
+    </section>
+    <section>
+      <strong>Unrolling Swiss Roll</strong>
+      <p style="grid-template-columns: repeat(2, 1fr);">
+        <img src="assets/swiss_roll_pca.png" style="width: 100%" class="plain">
+        <img src="assets/swiss_roll_tsne.png" style="width: 100%" class="plain">
+      </p>
+    </section>
+    <section>
+      <strong>Dataset</strong>
+      <p style="grid-template-columns: repeat(1, 1fr);">
+        <img src="assets/dataset.png" style="height: 80vh" class="plain">
+      </p>
+    </section>
+    <section>
+      <strong>Select xᵢ</strong>
+      <p style="grid-template-columns: repeat(1, 1fr);">
+        <img src="assets/pick-a-point.png" style="height: 80vh" class="plain">
+      </p>
+    </section>
+    <section>
+      <strong>Calculate distance to xⱼ</strong>
+      <p style="grid-template-columns: repeat(1, 1fr);">
+        <img src="assets/two-points.png" style="height: 80vh" class="plain">
+      </p>
+    </section>
+    <section>
+      <strong>Gaussian distribution</strong>
+      <p style="grid-template-columns: repeat(1, 1fr);">
+        <img src="assets/point-on-gaussian.png" style="height: 80vh" class="plain">
+      </p>
+    </section>
+    <section>
+      <strong>Gaussian distribution</strong>
+      <p style="grid-template-columns: repeat(1, 1fr);">
+        <img src="assets/all-points.png" style="height: 80vh" class="plain">
+      </p>
+    </section>
+    <section>
+      <strong>Scattered clusters?</strong>
+      <p style="grid-template-columns: repeat(1, 1fr);">
+        <img src="assets/lose-cluster.png" style="height: 80vh" class="plain">
+      </p>
+    </section>
+    <section>
+      <strong>Plotting distances</strong>
+      <p style="grid-template-columns: repeat(1, 1fr);">
+        <img src="assets/loose-distribution.png" style="height: 80vh" class="plain">
+      </p>
+    </section>
+    <section>
+      <strong>Adjusting distribution variance</strong>
+      <p style="grid-template-columns: repeat(1, 1fr);">
+        <img src="assets/abs-values.png" style="height: 80vh" class="plain">
+      </p>
+    </section>
+    <section>
+      <strong>Scaling probabilities</strong>
+      <p style="">
+        <img src="assets/pd-sum.png" style="min-height: 15vh" class="plain">
+        <img src="assets/pd-sum-1.png" style="min-height: 15vh" class="plain">
+        <img src="assets/pd-sum-2.png" style="min-height: 15vh" class="plain">
+      </p>
+    </section>
+    <section>
+      <p style="grid-template-columns: repeat(2, 1fr); max-width: 30vw; margin: 0 auto;">
+        <strong>Averaging sums</strong>
+        <img src="assets/avg.png" style="" class="plain">
+      </p>
+      <p style="grid-template-columns: repeat(2, 1fr);">
+        <img src="assets/i-to-j.png" style="width: 100%" class="plain">
+        <img src="assets/j-to-i.png" style="width: 100%" class="plain">
+      </p>
+    </section>
+    <section>
+      <h2>How t-SNE really calculates probabilities</h2>
+      <p style="">
+        <img src="assets/pd-sum.png" style="min-height: 15vh" class="plain">
+        <img src="assets/prob-formula.png" style="min-height: 15vh" class="plain">
+      </p>
+    </section>
+    <section>
+      <p style="grid-template-columns: repeat(2, 1fr);">
+        <img src="assets/original-dist.png" style="width: 100%" class="plain">
+        <img src="assets/original-dist-2.png" style="width: 100%" class="plain">
+      </p>
+    </section>
+    <section>
+      <h2>Low-dimensional space</h2>
+      <p style="">
+        <img src="assets/target-gaussian.png" style="min-height: 15vh" class="plain">
+        <img class="fragment" src="assets/target-t.png" style="min-height: 15vh" class="plain">
+      </p>
+    </section>
+    <section>
+      <strong>Student distribution (1 deg of freedom)</strong>
+      <p style="grid-template-columns: repeat(1, 1fr);">
+        <img src="assets/t-dist.png" style="height: 80vh" class="plain">
+      </p>
+    </section>
+    <section>
+      <strong>Student-like vs Gaussian-like</strong>
+      <p style="grid-template-columns: repeat(1, 1fr);">
+        <img src="assets/dist-difference.png" style="height: 80vh" class="plain">
+      </p>
+    </section>
+    <section>
+      <h2>Final formulas</h2>
+      <p style="">
+        <img src="assets/both-equation.png" style="min-height: 30vh" class="plain">
+      </p>
+    </section>
+    <section>
+      <h2>Gradient descent</h2>
+      <p style="">
+        <span>Kullback-Leibler divergence</span>
+        <img src="assets/kb-divergence.png" style="min-height: 15vh" class="plain">
+      </p>
+      <p style="" class="fragment">
+        <span>Derivate</span>
+        <img src="assets/kl-derivate.png" style="min-height: 15vh" class="plain">
+      </p>
+    </section>
+    <section>
+      <h2>Gradient descent - iterations</h2>
+      <p style="grid-template-columns: repeat(1, 1fr);">
+        <img src="assets/t-sne-run.gif" style="width: 80vw" class="plain">
+      </p>
+    </section>
+    <section>
+      <h2>Optimizations</h2>
+      <p style="grid-template-columns: repeat(1, 1fr);">
+        <strong>Early Compression</strong>
+        <span>Prevents clustering at the early stages with regularization.</span>
+      </p>
+      <p>
+        <strong>Early Exaggeration</strong>
+        <span>Moves clusters by multiplying p values at the early stages.</span>
+      </p>
+    </section>
+    <section>
+      <h2>Difficult data</h2>
+      <p style="grid-template-columns: repeat(3, 1fr);">
+        <img src="assets/nonlineary1.png" style="" class="plain">
+        <img src="assets/pre5-3.png" style="" class="plain">
+        <img src="assets/pre2-3.png" style="" class="plain">
+      </p>
+      <p style="grid-template-columns: repeat(2, 1fr);">
+        <img src="assets/nonlineary2.png" style="" class="plain">
+        <img src="assets/pre5-2.png" style="" class="plain">
+      </p>
+    </section>
+    <section>
+      <h2>CNN applications</h2>
+      <p style="grid-template-columns: repeat(1, 1fr);">
+        <img src="assets/network-structure.png" style="width: 80vw" class="plain">
+      </p>
+      <small><a href="https://cs.stanford.edu/people/karpathy/cnnembed/cnn_embed_6k.jpg">Original CNN embedded output: https://cs.stanford.edu/people/karpathy/cnnembed/cnn_embed_6k.jpg</a></small>
+    </section>
+    <section data-background="assets/cnn_embed_scaled.jpg" data-background-size="100%">
+      <p style="grid-template-columns: repeat(1, 1fr);">
+      </p>
+    </section>
+    <section data-background="assets/crop1.jpg" data-background-size="100%">
+      <p style="grid-template-columns: repeat(1, 1fr);">
+      </p>
+    </section>
+    <section data-background="assets/crop2.jpg" data-background-size="100%">
+      <p style="grid-template-columns: repeat(1, 1fr);">
+      </p>
+    </section>
+    <section>
+      <h2>What to remember?</h2>
+      <ul style="grid-template-columns: repeat(1, 1fr);">
+        <li>Great for linearly nonseparable data</li>
+        <li>Iterative and non-deterministic</li>
+        <li>Cannot be reused on different data</li>
+      </ul>
+    </section>
+    <section>
+      <h2>Thanks</h2>
+      <blockquote>"There's no such thing as a stupid question!"</blockquote>
+      <p>
+        <small>Kemal Erdem | @burnpiro</small><br/>
+        <small><a href="https://erdem.pl">https://erdem.pl</a> <br/><a href="https://github.com/burnpiro">https://github.com/burnpiro</a></small><br/>
+      </p>
+    </section>
+  </div>
+</div>
+
+<script src="js/reveal.js"></script>
+
+<script>
+  // More info about config & dependencies:
+  // - https://github.com/hakimel/reveal.js#configuration
+  // - https://github.com/hakimel/reveal.js#dependencies
+  Reveal.initialize({
+    // Display a presentation progress bar
+    progress: false,
+    hash: true,
+    history: true,
+    width: "100%",
+    height: "100%",
+    margin: 0,
+    minScale: 1,
+    maxScale: 1,
+    dependencies: [
+      // Interpret Markdown in <section> elements
+      {src: 'plugin/markdown/marked.js'},
+      {src: 'plugin/markdown/markdown.js'},
+      // Speaker notes
+      {src: 'plugin/notes/notes.js', async: true},
+      // Syntax highlight for <code> elements
+      {src: 'plugin/highlight/highlight.js', async: true},
+      // MathJax
+      {src: 'plugin/math/math.js', async: true}
+    ]
+  });
+</script>
+</body>
+</html>
