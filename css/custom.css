@@ -1,0 +1,17 @@
+body:after {
+    position: fixed;
+    top: 3vh;
+    right: 3vw;
+    /*background: url(../assets/QOlogo2.png) no-repeat;*/
+    background-size: 8vh 4.8vh;
+    width: 8vh;
+    height: 8.8vh;
+    content:"";
+    font-size: 80% !important;
+}
+
+@media screen and (max-width: 719px) {
+    .hide-mobile {
+        display: none;
+    }
+}
