@@ -63,6 +63,7 @@ ul, ol, div, p {
 	width: 100% !important;
 	height: auto !important;
 	zoom: 1 !important;
+	pointer-events: initial;
 
 	left: auto;
 	top: auto;
@@ -161,4 +162,33 @@ ul, ol, div, p {
 	display: block;
 	position: absolute;
 	font-size: 14px;
+}
+
+p {
+	display: grid;
+	align-items: center;
+	justify-items: center;
+}
+
+/*li {*/
+/*	line-height: 3.5rem;*/
+/*}*/
+
+small li {
+	line-height: 2em;
+	font-size: 0.7em;
+}
+
+img {
+	border: none !important;
+	box-shadow: none !important;
+}
+
+.caption {
+	font-size: 0.3em !important;
+	color: rgba(0,0,0,0.4);
+}
+
+.MathJax {
+	font-size: 0.8em;
 }

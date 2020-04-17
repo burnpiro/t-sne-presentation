@@ -14,10 +14,9 @@
   <link rel="stylesheet" href="css/reset.css">
   <link rel="stylesheet" href="css/reveal.css">
   <link rel="stylesheet" href="css/theme/beige.css">
-  <link rel="stylesheet" href="css/custom.css">
 
   <!-- Theme used for syntax highlighting of code -->
-  <link rel="stylesheet" href="lib/css/github-light.css">
+  <link rel="stylesheet" href="lib/css/isbl-editor-light.css">
 
   <!-- Printing and PDF exports -->
   <script>
@@ -27,10 +26,6 @@
     link.href = window.location.search.match(/print-pdf/gi) ? 'css/print/pdf.css' : 'css/print/paper.css';
     document.getElementsByTagName('head')[0].appendChild(link);
   </script>
-
-  <!--[if lt IE 9]>
-  <script src="lib/js/html5shiv.js"></script>
-  <![endif]-->
 </head>
 <body>
 <div class="reveal">
@@ -40,144 +35,143 @@
       <p>
         t-distributed Stochastic Neighbor Embedding
       </p>
-      <img src="assets/nonlineary2.png" style="max-width: 80%; padding-right: 5vw" class="plain">
-      <img src="assets/pre5-2.png" style="max-width: 80%;" class="plain"><br/>
+      <img src="assets/nonlineary2.png" style="max-width: 80%; padding-right: 5vw">
+      <img src="assets/pre5-2.png" style="max-width: 80%;"><br/>
       <small>by Kemal Erdem | <a href="https://erdem.pl">@burnpiro</a></small>
       <aside class="notes"></aside>
     </section>
     <section>
       <h2>What is t-SNE?</h2>
       <p>
-        <img src="assets/swiss_roll.png" style="min-width: 50vw" class="plain">
+        <img src="assets/swiss_roll.png">
         <strong>t-SNE vs PCA</strong>
       </p>
     </section>
     <section>
       <strong>Unrolling Swiss Roll</strong>
       <p style="grid-template-columns: repeat(2, 1fr);">
-        <img src="assets/swiss_roll_pca.png" style="width: 100%" class="plain">
-        <img src="assets/swiss_roll_tsne.png" style="width: 100%" class="plain">
+        <img src="assets/swiss_roll_pca.png">
+        <img src="assets/swiss_roll_tsne.png">
       </p>
     </section>
     <section>
       <strong>Dataset</strong>
       <p style="grid-template-columns: repeat(1, 1fr);">
-        <img src="assets/dataset.png" style="height: 80vh" class="plain">
+        <img src="assets/dataset.png" style="max-height: 50vh">
       </p>
     </section>
     <section>
       <strong>Select xᵢ</strong>
       <p style="grid-template-columns: repeat(1, 1fr);">
-        <img src="assets/pick-a-point.png" style="height: 80vh" class="plain">
+        <img src="assets/pick-a-point.png" style="max-height: 50vh">
       </p>
     </section>
     <section>
       <strong>Calculate distance to xⱼ</strong>
       <p style="grid-template-columns: repeat(1, 1fr);">
-        <img src="assets/two-points.png" style="height: 80vh" class="plain">
+        <img src="assets/two-points.png" style="max-height: 50vh">
       </p>
     </section>
     <section>
       <strong>Gaussian distribution</strong>
       <p style="grid-template-columns: repeat(1, 1fr);">
-        <img src="assets/point-on-gaussian.png" style="height: 80vh" class="plain">
+        <img src="assets/point-on-gaussian.png" style="max-height: 50vh">
       </p>
     </section>
     <section>
       <strong>Gaussian distribution</strong>
       <p style="grid-template-columns: repeat(1, 1fr);">
-        <img src="assets/all-points.png" style="height: 80vh" class="plain">
+        <img src="assets/all-points.png" style="max-height: 50vh">
       </p>
     </section>
     <section>
       <strong>Scattered clusters?</strong>
       <p style="grid-template-columns: repeat(1, 1fr);">
-        <img src="assets/lose-cluster.png" style="height: 80vh" class="plain">
+        <img src="assets/lose-cluster.png" style="max-height: 50vh">
       </p>
     </section>
     <section>
       <strong>Plotting distances</strong>
       <p style="grid-template-columns: repeat(1, 1fr);">
-        <img src="assets/loose-distribution.png" style="height: 80vh" class="plain">
+        <img src="assets/loose-distribution.png" style="max-height: 50vh">
       </p>
     </section>
     <section>
       <strong>Adjusting distribution variance</strong>
       <p style="grid-template-columns: repeat(1, 1fr);">
-        <img src="assets/abs-values.png" style="height: 80vh" class="plain">
+        <img src="assets/abs-values.png" style="max-height: 50vh">
       </p>
     </section>
     <section>
       <strong>Scaling probabilities</strong>
-      <p style="">
-        <img src="assets/pd-sum.png" style="min-height: 15vh" class="plain">
-        <img src="assets/pd-sum-1.png" style="min-height: 15vh" class="plain">
-        <img src="assets/pd-sum-2.png" style="min-height: 15vh" class="plain">
+      <p>
+        $$ p_{j|i} = \frac{g(| x_i - x_j|)}{\sum_{k \neq i}g(|x_i - x_k|)} $$
+        $$ p_{j|i} = \frac{0.177}{0.177 + 0.177 + 0.164 + 0.0014 + 0.0013 + ...} \approx 0.34 $$
+        $$ p_{j|i} = \frac{0.077}{0.077 + 0.064 + 0.064 + 0.032 + 0.031 + ...} \approx 0.27 $$
       </p>
     </section>
     <section>
-      <p style="grid-template-columns: repeat(2, 1fr); max-width: 30vw; margin: 0 auto;">
-        <strong>Averaging sums</strong>
-        <img src="assets/avg.png" style="" class="plain">
-      </p>
-      <p style="grid-template-columns: repeat(2, 1fr);">
-        <img src="assets/i-to-j.png" style="width: 100%" class="plain">
-        <img src="assets/j-to-i.png" style="width: 100%" class="plain">
+      <strong>Averaging sums $p_{ij} = \frac{p_{j|i} + p_{i|j}}{2N}$</strong>
+      <p style="grid-template-columns: 50% 50%">
+        <img src="assets/i-to-j.png" style="max-height: 50vh">
+        <img src="assets/j-to-i.png" style="max-height: 50vh">
       </p>
     </section>
     <section>
-      <h2>How t-SNE really calculates probabilities</h2>
-      <p style="">
-        <img src="assets/pd-sum.png" style="min-height: 15vh" class="plain">
-        <img src="assets/prob-formula.png" style="min-height: 15vh" class="plain">
+      <strong>How t-SNE really calculates probabilities</strong>
+      <p>
+        $$ p_{j|i} = \frac{g(| x_i - x_j|)}{\sum_{k \neq i}g(|x_i - x_k|)} $$
+        $$ p_{j|i} = \frac{\exp(-\left | x_i - x_j \right |^2 / 2\sigma_i^2)}{\sum_{k \neq i} \exp(- \left | x_i - x_l \right |^2 / 2\sigma_i^2)} $$
       </p>
     </section>
     <section>
       <p style="grid-template-columns: repeat(2, 1fr);">
-        <img src="assets/original-dist.png" style="width: 100%" class="plain">
-        <img src="assets/original-dist-2.png" style="width: 100%" class="plain">
+        <img src="assets/original-dist.png" style="max-height: 50vh;">
+        <img src="assets/original-dist-2.png" style="max-height: 50vh;">
       </p>
     </section>
     <section>
       <h2>Low-dimensional space</h2>
       <p style="">
-        <img src="assets/target-gaussian.png" style="min-height: 15vh" class="plain">
-        <img class="fragment" src="assets/target-t.png" style="min-height: 15vh" class="plain">
+        $$ q_{ij} =\frac{\exp(-\left | y_i - y_j \right |^2 / 2\sigma_i^2)}{\sum_{k \neq l} \exp(- \left | y_k - y_l \right |^2 / 2\sigma_i^2)} $$
+        <span class="fragment fade-up">$$ q_{ij} =\frac{(1 + \left | y_i - y_j \right |^2 )^{-1}}{\sum_{k \neq l} (1 + \left | y_k - y_l \right |^2 )^{-1} } $$</span>
       </p>
     </section>
     <section>
       <strong>Student distribution (1 deg of freedom)</strong>
       <p style="grid-template-columns: repeat(1, 1fr);">
-        <img src="assets/t-dist.png" style="height: 80vh" class="plain">
+        <img src="assets/t-dist.png" style="max-height: 50vh">
       </p>
     </section>
     <section>
       <strong>Student-like vs Gaussian-like</strong>
-      <p style="grid-template-columns: repeat(1, 1fr);">
-        <img src="assets/dist-difference.png" style="height: 80vh" class="plain">
+      <p>
+        <img src="assets/dist-difference.png" style="max-height: 50vh">
       </p>
     </section>
     <section>
       <h2>Final formulas</h2>
       <p style="">
-        <img src="assets/both-equation.png" style="min-height: 30vh" class="plain">
+        $$ p_{ij} = \frac{\exp(-\left | x_i - x_j \right |^2 / 2\sigma_i^2)}{\sum_{k \neq l} \exp(- \left | x_k - x_l \right |^2 / 2\sigma_i^2)} $$
+
+        $$ q_{ij} =\frac{(1 + \left | y_i - y_j \right |^2 )^{-1}}{\sum_{k \neq l} (1 + \left | y_k - y_l \right |^2 )^{-1} } $$
       </p>
     </section>
     <section>
       <h2>Gradient descent</h2>
       <p style="">
         <span>Kullback-Leibler divergence</span>
-        <img src="assets/kb-divergence.png" style="min-height: 15vh" class="plain">
+        $$ C = D_{\text{KL}}(P\parallel Q)=\sum _{x\in {\mathcal {X}}}P(x)\log \left({\frac {P(x)}{Q(x)}}\right) $$
       </p>
       <p style="" class="fragment">
         <span>Derivate</span>
-        <img src="assets/kl-derivate.png" style="min-height: 15vh" class="plain">
+        $$ \frac{\delta C}{\delta y_i} = 4 \sum_j (p_{ij} - q_{ij})(y_i - y_j)(1 + \left | y_i - y_j \right | ^2)^{-1} $$
       </p>
     </section>
     <section>
       <h2>Gradient descent - iterations</h2>
       <p style="grid-template-columns: repeat(1, 1fr);">
-        <img src="assets/t-sne-run.gif" style="width: 80vw" class="plain">
+        <img src="assets/t-sne-run.gif" style="width: 80vw">
       </p>
     </section>
     <section>
@@ -194,33 +188,27 @@
     <section>
       <h2>Difficult data</h2>
       <p style="grid-template-columns: repeat(3, 1fr);">
-        <img src="assets/nonlineary1.png" style="" class="plain">
-        <img src="assets/pre5-3.png" style="" class="plain">
-        <img src="assets/pre2-3.png" style="" class="plain">
+        <img src="assets/nonlineary1.png" style="max-height: 25vh">
+        <img src="assets/pre5-3.png" style="max-height: 25vh">
+        <img src="assets/pre2-3.png" style="max-height: 25vh">
       </p>
       <p style="grid-template-columns: repeat(2, 1fr);">
-        <img src="assets/nonlineary2.png" style="" class="plain">
-        <img src="assets/pre5-2.png" style="" class="plain">
+        <img src="assets/nonlineary2.png" style="max-height: 25vh">
+        <img src="assets/pre5-2.png" style="max-height: 25vh">
       </p>
     </section>
     <section>
       <h2>CNN applications</h2>
       <p style="grid-template-columns: repeat(1, 1fr);">
-        <img src="assets/network-structure.png" style="width: 80vw" class="plain">
+        <img src="assets/network-structure.png" style="max-height: 60vh; max-width: 80vw">
       </p>
       <small><a href="https://cs.stanford.edu/people/karpathy/cnnembed/cnn_embed_6k.jpg">Original CNN embedded output: https://cs.stanford.edu/people/karpathy/cnnembed/cnn_embed_6k.jpg</a></small>
     </section>
     <section data-background="assets/cnn_embed_scaled.jpg" data-background-size="100%">
-      <p style="grid-template-columns: repeat(1, 1fr);">
-      </p>
     </section>
     <section data-background="assets/crop1.jpg" data-background-size="100%">
-      <p style="grid-template-columns: repeat(1, 1fr);">
-      </p>
     </section>
     <section data-background="assets/crop2.jpg" data-background-size="100%">
-      <p style="grid-template-columns: repeat(1, 1fr);">
-      </p>
     </section>
     <section>
       <h2>What to remember?</h2>
@@ -248,23 +236,38 @@
   // - https://github.com/hakimel/reveal.js#configuration
   // - https://github.com/hakimel/reveal.js#dependencies
   Reveal.initialize({
-    // Display a presentation progress bar
-    progress: false,
     hash: true,
-    history: true,
-    width: "100%",
-    height: "100%",
-    margin: 0,
-    minScale: 1,
-    maxScale: 1,
+    controls: true,
+    progress: false,
+    slideNumber: false,
+    overview: true,
+    center: true,
+    navigationMode: 'default',
+    fragmentInURL: false,
+    embedded: false,
+    preloadIframes: null,
+    autoSlide: 0,
+    autoSlideStoppable: true,
+    defaultTiming: 120,
+    mouseWheel: false,
+    previewLinks: false,
+    transition: 'slide', // none/fade/slide/convex/concave/zoom
+    transitionSpeed: 'default', // default/fast/slow
+    backgroundTransition: 'fade', // none/fade/slide/convex/concave/zoom
+    display: 'block',
+    math: {
+      mathjax: 'plugin/math/MathJax.js',
+      config: 'TeX-AMS_HTML-full', // See http://docs.mathjax.org/en/latest/config-files.html
+      // pass other options into `MathJax.Hub.Config()`
+      TeX: {Macros: {RR: "{\\bf R}"}}
+    },
     dependencies: [
-      // Interpret Markdown in <section> elements
       {src: 'plugin/markdown/marked.js'},
       {src: 'plugin/markdown/markdown.js'},
-      // Speaker notes
+      {src: 'plugin/highlight/highlight.js'},
+      // Zoom in and out with Ctrl+click
+      {src: 'plugin/zoom-js/zoom.js', async: true},
       {src: 'plugin/notes/notes.js', async: true},
-      // Syntax highlight for <code> elements
-      {src: 'plugin/highlight/highlight.js', async: true},
       // MathJax
       {src: 'plugin/math/math.js', async: true}
     ]
