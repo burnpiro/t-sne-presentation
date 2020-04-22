@@ -123,7 +123,7 @@
       <strong>How t-SNE really calculates probabilities</strong>
       <p>
         $$ p_{j|i} = \frac{g(| x_i - x_j|)}{\sum_{k \neq i}g(|x_i - x_k|)} $$
-        $$ p_{j|i} = \frac{\exp(-\left | x_i - x_j \right |^2 / 2\sigma_i^2)}{\sum_{k \neq i} \exp(- \left | x_i - x_l \right |^2 / 2\sigma_i^2)} $$
+        $$ p_{j|i} = \frac{\exp(-\left | x_i - x_j \right |^2 / 2\sigma_i^2)}{\sum_{k \neq i} \exp(- \left | x_i - x_k \right |^2 / 2\sigma_i^2)} $$
       </p>
     </section>
     <section>
@@ -135,8 +135,8 @@
     </section>
     <section>
       <h2>Low-dimensional space</h2>
-      <p style="">
-        $$ q_{ij} =\frac{\exp(-\left | y_i - y_j \right |^2 / 2\sigma_i^2)}{\sum_{k \neq l} \exp(- \left | y_k - y_l \right |^2 / 2\sigma_i^2)} $$
+      <p>
+        <span>$$ q_{ij} =\frac{\exp(-\left | y_i - y_j \right |^2 / 2\sigma_i^2)}{\sum_{k \neq l} \exp(- \left | y_k - y_l \right |^2 / 2\sigma_i^2)} $$</span>
         <span class="fragment fade-up">$$ q_{ij} =\frac{(1 + \left | y_i - y_j \right |^2 )^{-1}}{\sum_{k \neq l} (1 + \left | y_k - y_l \right |^2 )^{-1} } $$</span>
       </p>
     </section>
