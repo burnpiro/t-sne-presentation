@@ -120,10 +120,18 @@
       </p>
     </section>
     <section>
+      <strong>Perplexity and selecting $\sigma^2$</strong>
+      <p>
+        $$ Perp(P_i) = 2^{-\sum p_{j|i}\log_2 p_{j|i} } $$
+        <span class="fragment fade-up">Perp - target number of neighbors</span>
+      </p>
+    </section>
+    <section>
       <strong>How t-SNE really calculates probabilities</strong>
       <p>
         $$ p_{j|i} = \frac{g(| x_i - x_j|)}{\sum_{k \neq i}g(|x_i - x_k|)} $$
         $$ p_{j|i} = \frac{\exp(-\left | x_i - x_j \right |^2 / 2\sigma_i^2)}{\sum_{k \neq i} \exp(- \left | x_i - x_k \right |^2 / 2\sigma_i^2)} $$
+        <small class="fragment fade-up">$$ \frac{1}{\sigma \sqrt{2\pi}} \exp(-\frac{1}{2} \left ( \frac{x_i - x_j}{\sigma} \right ) ^2) $$</small>
       </p>
     </section>
     <section>
@@ -134,7 +142,7 @@
       </p>
     </section>
     <section>
-      <h2>Low-dimensional space</h2>
+      <h2>Part 2 - Low-dimensional space</h2>
       <p>
         <span>$$ q_{ij} =\frac{\exp(-\left | y_i - y_j \right |^2 / 2\sigma_i^2)}{\sum_{k \neq l} \exp(- \left | y_k - y_l \right |^2 / 2\sigma_i^2)} $$</span>
         <span class="fragment fade-up">$$ q_{ij} =\frac{(1 + \left | y_i - y_j \right |^2 )^{-1}}{\sum_{k \neq l} (1 + \left | y_k - y_l \right |^2 )^{-1} } $$</span>
@@ -143,13 +151,14 @@
     <section>
       <strong>Student distribution (1 deg of freedom)</strong>
       <p style="grid-template-columns: repeat(1, 1fr);">
+        <span>Random Points</span>
         <img src="assets/t-dist.png" style="max-height: 45vh">
       </p>
     </section>
     <section>
       <strong>Student-like vs Gaussian-like</strong>
       <p>
-        <img src="assets/dist-difference.png" style="max-height: 45vh">
+        <img src="assets/dist-difference.png" style="max-height: 45vh; width: 80vw">
       </p>
     </section>
     <section>
